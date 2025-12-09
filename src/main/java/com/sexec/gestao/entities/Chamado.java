@@ -1,12 +1,10 @@
 package com.sexec.gestao.entities;
 
 import com.sexec.gestao.enums.PagamentoEnum;
-import com.sexec.gestao.enums.ParecerEnum;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "chamados")

@@ -1,5 +1,7 @@
 package com.sexec.gestao.entities;
 
+import com.sexec.gestao.enums.PagamentoEnum;
+import com.sexec.gestao.enums.ParecerEnum;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,13 +19,13 @@ public class Ust {
   private String name;
 
   @Column(name = "quantidade_faturar")
-  private String QuantidadeFaturtar;
+  private String quantidadeFaturtar;
 
   @Column(name = "parecer")
-  private String parecer;
+  private ParecerEnum parecer;
 
   @Column(name = "pagamento")
-  private String pagamento;
+  private PagamentoEnum pagamento;
 
   @Column(name = "is_pago")
   private Boolean isPago;
@@ -32,21 +34,30 @@ public class Ust {
   @JoinColumn(name = "id_seplag", referencedColumnName = "id_seplag", insertable = false, updatable = false)
   private Chamado chamado;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "service", referencedColumnName = "service")
+  private UstServices ustServices;
+
   public Ust() {
   }
 
-  public Ust(String service, String name, String quantidadeFaturtar, String parecer, String pagamento, Boolean isPago, Chamado chamado) {
+  public Ust(String service, String name, String quantidadeFaturtar, ParecerEnum parecer, PagamentoEnum pagamento, Boolean isPago, Chamado chamado, UstServices ustServices) {
     this.service = service;
     this.name = name;
-    QuantidadeFaturtar = quantidadeFaturtar;
+    this.quantidadeFaturtar = quantidadeFaturtar;
     this.parecer = parecer;
     this.pagamento = pagamento;
     this.isPago = isPago;
     this.chamado = chamado;
+    this.ustServices = ustServices;
   }
 
   public Long getId() {
     return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getService() {
@@ -66,26 +77,26 @@ public class Ust {
   }
 
   public String getQuantidadeFaturtar() {
-    return QuantidadeFaturtar;
+    return quantidadeFaturtar;
   }
 
   public void setQuantidadeFaturtar(String quantidadeFaturtar) {
-    QuantidadeFaturtar = quantidadeFaturtar;
+    this.quantidadeFaturtar = quantidadeFaturtar;
   }
 
-  public String getParecer() {
+  public ParecerEnum getParecer() {
     return parecer;
   }
 
-  public void setParecer(String parecer) {
+  public void setParecer(ParecerEnum parecer) {
     this.parecer = parecer;
   }
 
-  public String getPagamento() {
+  public PagamentoEnum getPagamento() {
     return pagamento;
   }
 
-  public void setPagamento(String pagamento) {
+  public void setPagamento(PagamentoEnum pagamento) {
     this.pagamento = pagamento;
   }
 
@@ -103,5 +114,13 @@ public class Ust {
 
   public void setChamado(Chamado chamado) {
     this.chamado = chamado;
+  }
+
+  public UstServices getUstServices() {
+    return ustServices;
+  }
+
+  public void setUstServices(UstServices ustServices) {
+    this.ustServices = ustServices;
   }
 }
