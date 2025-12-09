@@ -11,4 +11,8 @@ public enum PagamentoEnum {
   PagamentoEnum(String desc) {
     this.desc = desc;
   }
+
+  public String getDesc() {
+    return desc;
+  }
 }

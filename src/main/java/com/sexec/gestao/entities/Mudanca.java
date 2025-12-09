@@ -1,8 +1,6 @@
 package com.sexec.gestao.entities;
 
-import com.sexec.gestao.enums.PrioridadeEnum;
-import com.sexec.gestao.enums.SituacaoEnum;
-import com.sexec.gestao.enums.SubModuloEnum;
+import com.sexec.gestao.enums.*;
 import jakarta.persistence.*;
 
 @Entity
@@ -65,7 +63,9 @@ public class Mudanca {
 
   private String responsavelComunicacao;
 
-  private String modulo;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "modulo")
+  private ModuloEnum modulo;
 
   @Enumerated(EnumType.STRING)
   @Column(name = "sub_modulo")
@@ -75,7 +75,9 @@ public class Mudanca {
   @Column(name = "situacao")
   private SituacaoEnum situacao;
 
-  private String tipoGmud;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "tipoGmud")
+  private GmudEnum tipoGmud;
 
   private String comunicado;
 
